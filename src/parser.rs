@@ -2,21 +2,9 @@ use std::fs::File;
 use std::io::prelude::*;
 //use std::path::Path;
 use std::io::{self, BufReader};
+use std::collections::VecDeque;
 
 pub fn parse(filepath:&str) -> io::Result<()> {
-    // let path = Path::new(filepath);
-    // let display = path.display();
-
-    // let mut file = match File::open(&path) {
-    //     Err(why) => panic!("couldn't open {}: {}", display, why),
-    //     Ok(file) => file,
-    // };
-
-    // let mut s = String::new();
-    // match file.read_to_string(&mut s) {
-    //     Err(why) => panic!("couldn't read {}: {}", display, why),
-    //     Ok(_) => print!("{} contains:\n{}", display, s),
-    // }
     let file = File::open(filepath)?;
     let f = BufReader::new(file);
 
@@ -26,9 +14,26 @@ pub fn parse(filepath:&str) -> io::Result<()> {
         count+=1;
         if count==5 {
             break;
-            // só pra não printar as 100 linhas do log
+            // só pra não printar as 1000 linhas do log
         }
     }
 
+    Ok(())
+}
+
+pub fn parse_to_queue(filepath:&str, queue:&VecDeque<&str>) -> io::Result<()> {
+    let file = File::open(filepath)?;
+    let f = BufReader::new(file);
+
+    let mut count = 0;
+    for line in f.lines() {
+        let other_line = line.unwrap();
+        queue.push_back(other_line.as_str());
+        count+=1;
+        if count==5 {
+            break;
+            // só pra não printar as 1000 linhas do log
+        }
+    }
     Ok(())
 }

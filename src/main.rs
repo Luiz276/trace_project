@@ -1,7 +1,9 @@
 mod parser;
 use std::collections::VecDeque;
 
-fn print_fila(fila: &mut VecDeque<std::str::Split<'_, &str>>) -> () {
+static FILEPATH: &str = "./redis_get_set.log";
+
+fn print_fila(fila: &mut VecDeque<Vec<String>>) -> () {
     while !fila.is_empty() {
         let x = fila.pop_front();
         println!("{:?}", x);
@@ -9,14 +11,14 @@ fn print_fila(fila: &mut VecDeque<std::str::Split<'_, &str>>) -> () {
 }
 
 fn main() {
-    let mut fila: VecDeque<std::str::Split<'_, &str>> = VecDeque::new();
+    let mut fila: VecDeque<Vec<String>> = VecDeque::new();
     //let ref_fila = &fila;
 
     // match parser::parse("./redis_get_set.log") {
     //     Err(_) => panic!("abort"),
     //     Ok(_) => println!("OK")
     // };
-    match parser::insert_queue("./redis_get_set.log", &mut fila) {
+    match parser::insert_queue(FILEPATH, &mut fila) {
         Err(_) => panic!("abort"),
         Ok(_) => println!("queue OK")
     }

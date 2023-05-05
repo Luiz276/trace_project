@@ -20,9 +20,9 @@ fn main() {
     // };
     match parser::insert_queue(FILEPATH, &mut fila) {
         Err(_) => panic!("abort"),
-        Ok(_) => println!("queue OK")
+        Ok(_) => println!("parse to queue OK")
     }
     print_fila(&mut fila);
-    println!("OK")
+    println!("program OK")
     //parser::parse("redis_get_set.log")
 }

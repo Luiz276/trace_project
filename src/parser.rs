@@ -6,17 +6,12 @@ use std::collections::VecDeque;
 pub fn parse(line:String, queue:&mut VecDeque<Vec<String>>) -> () {
     let parts: std::str::Split<&str> = line.split(" ");
     let mut vec: Vec<String> = Vec::new();
-    for mut i in parts {
-        let text = i;
-        let start_ch = text.chars().nth(0).unwrap().to_string();
-        let end_ch = text.chars().last().unwrap().to_string();
-        if start_ch=="\"" || start_ch == "[" {
-            i = i.trim_start();
-        }
-        if end_ch=="\"" || end_ch == "]" {
-            i = i.trim_end();
-        }
-        vec.push(i.to_string())
+    for i in parts {
+        // let start_ch = text.chars().nth(0).unwrap().to_string();
+        // let end_ch = text.chars().last().unwrap().to_string();
+        let mut new_i = i.trim_start_matches(['\"', '[']);
+        new_i = new_i.trim_end_matches(['\"', ']']);
+        vec.push(new_i.to_string())
     }
     queue.push_back(vec);
 }

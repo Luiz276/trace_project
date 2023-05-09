@@ -68,10 +68,22 @@ pub fn insert_queue(filepath:&str, queue:&mut VecDeque<Vec<String>>) -> io::Resu
 #[cfg(test)]
 mod tests {
     use crate::parser::parse_fix_fields;
+    //------------------------------------------------------------------------//
+    //                                                                        //
+    //nenhum teste vai passar por causa de um valor fixado em parse_fix_fields//
+    //                                                                        //
+    //------------------------------------------------------------------------//
 
-    #[test]
-    fn test_parse_fix_fields() {
-        //let vec = ["123", "field23", "abc", "def", "field"];
+    fn init_single_field() -> Vec<String> {
+        let mut vec: Vec<String> = Vec::new();
+        vec.push("123".to_string());
+        vec.push("field23".to_string());
+        vec.push("abc".to_string());
+        vec.push("def".to_string());
+        return vec
+    }
+
+    fn init_multiple_field() -> Vec<String> {
         let mut vec: Vec<String> = Vec::new();
         vec.push("123".to_string());
         vec.push("field23".to_string());
@@ -79,12 +91,30 @@ mod tests {
         vec.push("def".to_string());
         vec.push("field".to_string());
         vec.push("321".to_string());
+        return vec
+    }
+
+    #[test]
+    fn test_parse_fix_fields_multiple_fields() {
+        //let vec = ["123", "field23", "abc", "def", "field"];
+        let vec: Vec<String> = init_multiple_field();
         let mut correct = Vec::new();
         correct.push("123".to_string());
         correct.push("field23".to_string());
         correct.push("abc def".to_string());
         correct.push("field".to_string());
         correct.push("321".to_string());
+        let res = parse_fix_fields(&vec);
+        assert_eq!(correct, res);
+    }
+
+    #[test]
+    fn test_parse_fix_fields_single_fields() {
+        let vec = init_single_field();
+        let mut correct = Vec::new();
+        correct.push("123".to_string());
+        correct.push("field23".to_string());
+        correct.push("abc def".to_string());
         let res = parse_fix_fields(&vec);
         assert_eq!(correct, res);
     }

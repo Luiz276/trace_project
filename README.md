@@ -11,7 +11,12 @@ Projeto de desenvolvimento de uma aplicação geradora de carga baseada em traç
 
 1. - [x] Obtenção de arquivo log de alguma database
 2. - [x] Parsing deste arquivo para uma estrutura de dados
-3. - [ ] Realização das requisições baseado nesta estrutura de dados
+3. - [x] Realização das requisições baseado nesta estrutura de dados
+
+## Refinando o protótipo
+
+1. - [] Implementar heatmap em rust
+2. - [] Integrar heatmap com a aplicação, substituindo a fila
 
 ## Sintaxe dos comandos utilizados pelo YCSB
 

@@ -25,7 +25,7 @@ trait HeatmapGeneric {
 }
 
 impl dyn HeatmapGeneric {
-    fn create_heatmap(&self, heatmap: Heatmap, log_filepath: &str) -> &'static Heatmap {
+    fn create_heatmap(&mut self, heatmap: Heatmap, log_filepath: &str) -> &'static Heatmap {
         let mut fila: VecDeque<Vec<String>> = VecDeque::new();
         heatmap.frequency = Vec::new();
         heatmap.time = Vec::new();
@@ -42,7 +42,7 @@ impl dyn HeatmapGeneric {
             let command = &i[3];
 
             if !heatmap.commands.contains(command.as_str()) {
-                heatmap.commands.append(commands.as_str);
+                heatmap.commands.append(command.as_str);
                 heatmap.frequency.append(Vec::new());
                 heatmap.frequency[-1].append(0)
             }
@@ -54,6 +54,6 @@ impl dyn HeatmapGeneric {
 }
 
 fn main() {
-    let heat_map = heatmap::create_heatmap("./redis_get_set.log");
+    let heat_map = HeatmapGeneric::create_heatmap("./redis_get_set.log");
     println!("OK");
 }

@@ -21,11 +21,11 @@ pub struct Heatmap {
 }
 
 trait HeatmapGeneric {
-    fn create_heatmap(&mut heatmap, log_filepath: &str) -> &'static Heatmap;
+    fn create_heatmap(heatmap: &mut Heatmap, log_filepath: &str) -> ();
 }
 
-impl dyn HeatmapGeneric {
-    fn create_heatmap(&mut self, heatmap: Heatmap, log_filepath: &str) -> &'static Heatmap {
+impl HeatmapGeneric for Heatmap {
+    fn create_heatmap(heatmap: &mut Heatmap, log_filepath: &str) -> () {
         let mut fila: VecDeque<Vec<String>> = VecDeque::new();
         heatmap.frequency = Vec::new();
         heatmap.time = Vec::new();
@@ -37,7 +37,7 @@ impl dyn HeatmapGeneric {
             Ok(_) => println!("parse to queue OK")
         }
 
-        for i in vec {
+        for i in fila {
             let timestamp = &i[0];
             let command = &i[3];
 

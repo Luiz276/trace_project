@@ -1,5 +1,6 @@
 mod parser;
 mod reqs;
+mod heatmap;
 use std::collections::VecDeque;
 
 static FILEPATH: &str = "./redis_get_set.log";

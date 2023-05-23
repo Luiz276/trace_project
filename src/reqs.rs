@@ -21,6 +21,7 @@ use std::collections::VecDeque;
 //     println!("value for 'foo' = {}", bar);
 // }
 
+#[allow(dead_code)] // Temporário, só para testes iniciais
 pub fn send_command(vec: VecDeque<Vec<String>>) -> () {
     let client = match redis::Client::open("redis://127.0.0.1:6379/") {
         Ok(client) => client,

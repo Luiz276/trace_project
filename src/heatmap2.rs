@@ -2,14 +2,15 @@
  Heatmap data structure as suggested by my advisor
  */
 
+#[derive(Debug)]
 struct Heatmap {
-    data: Vec<String>,
-    timeblock_size: u64, // block of reqs that make a single timespan, number of reqs inside such block
+    data: Vec<String>,          // Vector that represents the variables acessed by a requisition
+    timeblock_size: usize,        // block of reqs that make a single timespan, number of reqs inside such block
     frequency: Vec<Vec<u64>>    // Matrix responsible for storing the frequencies of data in a timeblock
 }
 
 impl Heatmap {
-    fn new(timeblock_size: u64) -> Heatmap {
+    fn new(timeblock_size: usize) -> Heatmap {
         Heatmap {
             data: Vec::new(),
             timeblock_size,
@@ -32,7 +33,7 @@ impl Heatmap {
         self.frequency.push(temp_vec)
     }
 
-    fn get_timeblock_size(&self) -> &u64 {
+    fn get_timeblock_size(&self) -> &usize {
         &self.timeblock_size
     }
 
@@ -46,6 +47,8 @@ impl Heatmap {
 }
 
 fn main() {
-    let heatmap = Heatmap::new();
+    let mut heatmap = Heatmap::new(4);
+    heatmap.add_data("data".to_string());
+    heatmap.add_data("data2".to_string());
     println!("{:?}", heatmap)
 }

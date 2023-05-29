@@ -7,7 +7,7 @@ Projeto de desenvolvimento de uma aplicação geradora de carga baseada em traç
 
 - Feito utilizando a linguagem rust
 
-## Etapas para realização de um protótipo
+## Etapas para realização de um protótipo com fila
 
 1. - [x] Obtenção de arquivo log de alguma database
 2. - [x] Parsing deste arquivo para uma estrutura de dados
@@ -71,3 +71,9 @@ timestamp [client info] command
 ```
 1683138513.644266 [0 127.0.0.1:59998] "COMMAND" 
 ```
+
+# Organizando implementação
+
+## Sugestão Odorico
+
+Um Heatmap para cada comando, com as colunas repesentando cada dado e as linhas representando o tempo, com cada casa sendo uma janela de observação

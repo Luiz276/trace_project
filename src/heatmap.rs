@@ -15,7 +15,7 @@ pub struct Heatmap {
     frequency: Vec<Vec<u64>>,
 
     #[allow(dead_code)] // Temporário, só para testes iniciais
-    time_block: f64,              // timespan
+    time_block: f64,    // timespan
 
     time: Vec<u32>,
     commands: Vec<String>,

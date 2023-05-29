@@ -15,8 +15,9 @@ Projeto de desenvolvimento de uma aplicação geradora de carga baseada em traç
 
 ## Refinando o protótipo
 
-1. - [] Implementar heatmap em rust
-2. - [] Integrar heatmap com a aplicação, substituindo a fila
+1. - [x] Implementar protótipo de heatmap em rust
+2. - [] Refinar protótipo
+3. - [] Integrar heatmap com a aplicação, substituindo a fila
 
 ## Sintaxe dos comandos utilizados pelo YCSB
 

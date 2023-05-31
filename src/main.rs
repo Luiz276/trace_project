@@ -1,8 +1,10 @@
 mod parser;
 mod reqs;
-mod heatmap;
+mod heatmap2;
+mod redis;
+
 use std::collections::VecDeque;
-use heatmap::{Heatmap, HeatmapGeneric};
+use heatmap2::{Heatmap};
 
 static FILEPATH: &str = "./redis_get_set.log";
 
@@ -16,10 +18,11 @@ fn print_fila(fila: &mut VecDeque<Vec<String>>) -> () {
 
 #[allow(dead_code)]
 fn print_heatmap(heatmap: &Heatmap) -> () {
-    for i in 0..<Heatmap as HeatmapGeneric>::get_commands_len(heatmap) {
-        for j in 0..<Heatmap as HeatmapGeneric>::get_time_len(heatmap) {
-            println!("{:?}", <Heatmap as HeatmapGeneric>::get_frequency_at(heatmap, i, j))
+    for i in heatmap.get_frequency_table() {
+        for j in i {
+            print!("{:?}", j)
         }
+        print!("\n")
     }
 }
 
@@ -38,8 +41,9 @@ fn main() {
     //print_fila(&mut fila);
 
     //reqs::send_command(fila);
-    let heatmap = <Heatmap as HeatmapGeneric>::create_heatmap(FILEPATH);
+    let heatmap = Heatmap::new(4);
     print_heatmap(&heatmap);
+    println!("{:?}", heatmap);
     println!("program OK")
     //parser::parse("redis_get_set.log")
 }

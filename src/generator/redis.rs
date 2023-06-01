@@ -1,5 +1,5 @@
 mod heatmap2;
-mod parser;
+pub mod parser;
 
 impl Redis for ImplementationSpecificOperations {
     fn parse_into(&self, filepath: &str) -> () {

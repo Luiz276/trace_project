@@ -10,6 +10,7 @@ pub struct Heatmap {
     frequency: Vec<Vec<u64>>    // Matrix responsible for storing the frequencies of var in a timeblock
 }
 
+#[allow(dead_code)]
 impl Heatmap {
     pub fn new(timeblock_size: usize) -> Heatmap {
         Heatmap {

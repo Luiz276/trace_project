@@ -66,12 +66,13 @@ pub fn insert_queue(filepath:&str, queue:&mut VecDeque<Vec<String>>) -> io::Resu
 
 #[cfg(test)]
 mod tests {
-    use crate::heatmap::parser::parse_fix_fields;
     //------------------------------------------------------------------------//
     //                                                                        //
     //nenhum teste vai passar por causa de um valor fixado em parse_fix_fields//
     //                                                                        //
     //------------------------------------------------------------------------//
+
+    use crate::heatmap::parser::parse_fix_fields;
 
     fn init_single_field() -> Vec<String> {
         let mut vec: Vec<String> = Vec::new();

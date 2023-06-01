@@ -1,10 +1,10 @@
-mod parser;
-mod reqs;
-mod heatmap2;
-mod redis;
+mod heatmap;
 
 use std::collections::VecDeque;
-use heatmap2::{Heatmap};
+
+use heatmap::heatmap2::Heatmap;
+
+use crate::heatmap::parser;
 
 static FILEPATH: &str = "./redis_get_set.log";
 

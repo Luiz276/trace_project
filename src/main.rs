@@ -1,9 +1,7 @@
 mod heatmap;
 
 use std::collections::VecDeque;
-
 use heatmap::heatmap2::Heatmap;
-
 use crate::heatmap::parser;
 
 static FILEPATH: &str = "./redis_get_set.log";

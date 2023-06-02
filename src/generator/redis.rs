@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-use crate::{heatmap::{heatmap2::{ImplementationSpecificOperations, Heatmap}, parser}};
+use crate::heatmap::{heatmap2::{ImplementationSpecificOperations, Heatmap}, parser};
 
 // mod heatmap2;
 // pub mod parser;
@@ -17,7 +17,7 @@ impl dyn ImplementationSpecificOperations {
 
     // }
 
-    fn create_heatmaps(lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> () {
+    fn create_heatmaps(&self, lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> () {
 
     }
 }

@@ -77,5 +77,23 @@ impl Heatmap {
 pub trait ImplementationSpecificOperations {
     //fn parse_into(&self, filepath: &str) -> ();
 
-    fn create_heatmaps(lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> ();
+    fn create_heatmaps(&self, lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> ();
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::heatmap::heatmap2::Heatmap;
+    
+    #[test]
+    fn test() {
+        let mut heatmap = Heatmap::new("GET".to_string(), 4);
+        heatmap.add_var("var".to_string());
+        heatmap.add_var("var2".to_string());
+        heatmap.add_data(1, 0, 0);
+        heatmap.add_data(1, 0, 1);
+        heatmap.add_data(1, 0, 2);
+        heatmap.add_data(1, 0, 3);
+        heatmap.add_data(1, 1, 4);
+        println!("{:?}", heatmap)
+    }
 }

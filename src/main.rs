@@ -39,7 +39,7 @@ fn main() {
     //print_fila(&mut fila);
 
     //reqs::send_command(fila);
-    let heatmap = Heatmap::new(4);
+    let heatmap = Heatmap::new("GET".to_string(), 4);
     print_heatmap(&heatmap);
     println!("{:?}", heatmap);
     println!("program OK")

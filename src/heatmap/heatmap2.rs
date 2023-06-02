@@ -4,16 +4,18 @@
 
 #[derive(Debug)]
 pub struct Heatmap {
-    var: Vec<String>,               // Vector that represents the variables acessed by a requisition
-    timeblock_number: usize,
-    timeblock_size: usize,        // block of reqs that make a single timespan, number of reqs inside such block
+    command: String,            // Comando ao qual o heatmap corresponde
+    var: Vec<String>,           // Vector that represents the variables acessed by a requisition
+    timeblock_number: usize,    // Número de timeblocks presentes no Heatmap
+    timeblock_size: usize,      // block of reqs that make a single timespan, number of reqs inside such block
     frequency: Vec<Vec<u64>>    // Matrix responsible for storing the frequencies of var in a timeblock
 }
 
 #[allow(dead_code)]
 impl Heatmap {
-    pub fn new(timeblock_size: usize) -> Heatmap {
+    pub fn new(command: String, timeblock_size: usize) -> Heatmap {
         Heatmap {
+            command,
             var: Vec::new(),
             timeblock_number: 0,
             timeblock_size,
@@ -63,6 +65,10 @@ impl Heatmap {
         }
         self.equalize_lines();
         self.frequency[i][j] += 1
+    }
+
+    pub fn get_command(&self) -> &String {
+        &self.command
     }
 }
 

@@ -2,6 +2,8 @@
  Heatmap var structure as suggested by my advisor
  */
 
+use std::collections::VecDeque;
+
 #[derive(Debug)]
 pub struct Heatmap {
     command: String,            // Comando ao qual o heatmap corresponde
@@ -72,6 +74,8 @@ impl Heatmap {
     }
 }
 
-trait ImplementationSpecificOperations {
-    fn parse_into(&self, filepath: &str) -> ();
+pub trait ImplementationSpecificOperations {
+    //fn parse_into(&self, filepath: &str) -> ();
+
+    fn create_heatmaps(lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> ();
 }

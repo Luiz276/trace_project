@@ -1,4 +1,5 @@
 mod heatmap;
+mod generator;
 
 use std::collections::VecDeque;
 use heatmap::heatmap2::Heatmap;
@@ -25,23 +26,25 @@ fn print_heatmap(heatmap: &Heatmap) -> () {
 }
 
 fn main() {
-    let mut fila: VecDeque<Vec<String>> = VecDeque::new();
-    //let ref_fila = &fila;
+    let mut fila_linhas_log: VecDeque<Vec<String>> = VecDeque::new();
 
-    // match parser::parse("./redis_get_set.log") {
-    //     Err(_) => panic!("abort"),
-    //     Ok(_) => println!("OK")
-    // };
-    match parser::insert_queue(FILEPATH, &mut fila) {
+    match parser::insert_queue(FILEPATH, &mut fila_linhas_log) {
         Err(_) => panic!("abort"),
         Ok(_) => println!("parse to queue OK")
     }
+
+    let lista_heatmaps: Vec<Heatmap> = Vec::new();
+
+    //generator::redis::
     //print_fila(&mut fila);
 
     //reqs::send_command(fila);
-    let heatmap = Heatmap::new("GET".to_string(), 4);
-    print_heatmap(&heatmap);
-    println!("{:?}", heatmap);
-    println!("program OK")
+    // let heatmap = Heatmap::new("GET".to_string(), 4);
+    // print_heatmap(&heatmap);
+    // println!("{:?}", heatmap);
+    // println!("program OK")
+    
+    //let heatmap_list = parser::
+    
     //parser::parse("redis_get_set.log")
 }

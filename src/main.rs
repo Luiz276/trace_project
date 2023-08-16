@@ -34,7 +34,7 @@ fn main() {
     }
 
     let lista_heatmaps: Vec<Heatmap> = Vec::new();
-
+    //create_heatmaps
     //generator::redis::
     //print_fila(&mut fila);
 

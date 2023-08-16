@@ -1,4 +1,0 @@
-#+BEGIN_CENTER
-*Projeto de geração de carga baseado em traços de execução de bancos de dados
-#+END_CENTER
-

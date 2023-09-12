@@ -17,7 +17,7 @@ impl dyn ImplementationSpecificOperations {
 
     // }
 
-    fn create_heatmaps(&self, mut lista_heatmaps: Vec<Heatmap>, mut fila_linhas_log: VecDeque<Vec<String>>) -> () {
+    fn create_heatmaps(&self, mut lista_heatmaps: Vec<Heatmap>, mut fila_linhas_log: VecDeque<Vec<String>>) -> Vec<Heatmap> {
         let mut vec_commands: Vec<String> = Vec::new();
 
         while !fila_linhas_log.is_empty() {
@@ -34,6 +34,7 @@ impl dyn ImplementationSpecificOperations {
                     for htmp in lista_heatmaps {
                         if htmp.get_command() == &command {
                             target_htmp = htmp;
+                            break;
                         }
                     }
                 },
@@ -41,5 +42,6 @@ impl dyn ImplementationSpecificOperations {
             }
             //htmp.add
         }
+        lista_heatmaps
     }
 }

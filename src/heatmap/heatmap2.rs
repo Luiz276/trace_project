@@ -74,11 +74,6 @@ impl Heatmap {
     }
 }
 
-pub trait ImplementationSpecificOperations {
-    //fn parse_into(&self, filepath: &str) -> ();
-
-    fn create_heatmaps(&self, lista_heatmaps: Vec<Heatmap>, fila_linhas_log: VecDeque<Vec<String>>) -> ();
-}
 
 #[cfg(test)]
 mod tests {

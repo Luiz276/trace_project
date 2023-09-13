@@ -4,6 +4,7 @@ mod generator;
 use std::collections::VecDeque;
 use heatmap::heatmap2::Heatmap;
 use crate::heatmap::parser;
+use crate::generator::redis::implementationSpecificOperations;
 
 static FILEPATH: &str = "./redis_get_set.log";
 
@@ -33,8 +34,8 @@ fn main() {
         Ok(_) => println!("parse to queue OK")
     }
 
-    let lista_heatmaps: Vec<Heatmap> = Vec::new();
-    //create_heatmaps
+    let mut lista_heatmaps: Vec<Heatmap> = Vec::new();
+    lista_heatmaps = implementationSpecificOperations::create_heatmaps(lista_heatmaps, fila_linhas_log);
     //generator::redis::
     //print_fila(&mut fila);
 

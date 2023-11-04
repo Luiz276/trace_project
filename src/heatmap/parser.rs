@@ -29,7 +29,7 @@ fn parse_fix_fields(vec:&Vec<String>) -> Vec<String> {
     return final_vec;
 }
 
-fn parse(line:String, queue:&mut VecDeque<Vec<String>>) -> () {
+fn parse(line:String, command_queue:&mut VecDeque<Vec<String>>, ts_queue: &mut VecDeque<f64>) -> () {
     let parts: std::str::Split<&str> = line.split(" ");
     let mut vec: Vec<String> = Vec::new();
     for i in parts {
@@ -39,21 +39,22 @@ fn parse(line:String, queue:&mut VecDeque<Vec<String>>) -> () {
         new_i = new_i.trim_end_matches(['\"', ']']);
         vec.push(new_i.to_string())
     }
-    let mut new_vec:Vec<String> = vec.clone();
+    let mut comm_vec:Vec<String> = vec.clone();
+    ts_queue.push_back(vec[0].parse().unwrap());
     if vec[3].contains("HMSET") {
-        new_vec = parse_fix_fields(&vec);
+        comm_vec = parse_fix_fields(&vec);
     }
-    queue.push_back(new_vec);
+    command_queue.push_back(comm_vec);
 }
 
-pub fn insert_queue(filepath:&str, queue:&mut VecDeque<Vec<String>>) -> io::Result<()> {
+pub fn insert_queue(filepath:&str, command_queue:&mut VecDeque<Vec<String>>, ts_queue: &mut VecDeque<f64>) -> io::Result<()> {
     let file = File::open(filepath)?;
     let f = BufReader::new(file);
 
     let mut count = 0;
     for line in f.lines() {
         let other_line = line.unwrap();
-        parse(other_line, queue);
+        parse(other_line, command_queue, ts_queue);
         count+=1;
         if count==6 {
             break;

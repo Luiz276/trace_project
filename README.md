@@ -16,8 +16,9 @@ Projeto de desenvolvimento de uma aplicação geradora de carga baseada em traç
 ## Refinando o protótipo
 
 1. - [x] Implementar protótipo de heatmap em rust
-2. - [] Refinar protótipo
+2. - [x] Refinar protótipo
 3. - [] Integrar heatmap com a aplicação, substituindo a fila
+4. - [] Capacidade de utilizar o tempo entre um comando e outro
 
 ## Sintaxe dos comandos utilizados pelo YCSB
 
@@ -72,6 +73,7 @@ timestamp [client info] command
 ```
 1683138513.644266 [0 127.0.0.1:59998] "COMMAND" 
 ```
+Timestamp no formato segundos.microssegundos
 
 # Organizando implementação
 

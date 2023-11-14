@@ -41,12 +41,14 @@ impl Heatmap {
         }
     }
 
-    pub fn add_var(&mut self, var: String) -> () {
-        let mut_var = self.get_mut_var();
-        mut_var.push(var);
-        let temp_vec:Vec<u64> = Vec::new();
-        self.frequency.push(temp_vec);
-        self.equalize_lines()
+    fn add_var(&mut self, var: String) -> () {
+        if !self.var.contains(&var) {
+            let mut_var = self.get_mut_var();
+            mut_var.push(var);
+            let temp_vec:Vec<u64> = Vec::new();
+            self.frequency.push(temp_vec);
+            self.equalize_lines()
+        }
     }
 
     pub fn get_timeblock_size(&self) -> &usize {
@@ -61,12 +63,17 @@ impl Heatmap {
         &self.frequency[i][j]
     }
 
-    pub fn add_data(&mut self, i:usize, j:usize, req_number: usize) -> () {
+    pub fn add_data(&mut self, var:String, req_number: usize) -> () {
+        self.add_var(var.clone());
         if req_number%self.timeblock_size == 0 {
             self.timeblock_number += 1;
         }
         self.equalize_lines();
-        self.frequency[i][j] += 1
+        let temp_col = (req_number/self.timeblock_size);
+        let temp_line = self.var.iter().position(|x| x == &var).unwrap();
+        self.frequency[temp_line][temp_col] += 1
+
+        //        self.frequency[self.var.iter().position(|x| x == &var).unwrap()][req_number%self.timeblock_size] += 1
     }
 
     pub fn get_command(&self) -> &String {
@@ -82,13 +89,21 @@ mod tests {
     #[test]
     fn test() {
         let mut heatmap = Heatmap::new("GET".to_string(), 4);
-        heatmap.add_var("var".to_string());
-        heatmap.add_var("var2".to_string());
-        heatmap.add_data(1, 0, 0);
-        heatmap.add_data(1, 0, 1);
-        heatmap.add_data(1, 0, 2);
-        heatmap.add_data(1, 0, 3);
-        heatmap.add_data(1, 1, 4);
-        println!("{:?}", heatmap)
+        heatmap.add_data("var2".to_string(), 0, );
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  1);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var2".to_string(),  2);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  3);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  4);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  5);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  6);
+        println!("{:?}", heatmap);
+        heatmap.add_data("var".to_string(),  7);
+        println!("{:?}", heatmap);
     }
 }
